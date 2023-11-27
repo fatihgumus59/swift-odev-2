@@ -1,0 +1,88 @@
+import UIKit
+
+class Odev2 {
+    
+    func soru1(km:Double)->Double{
+        let sonuc = km * 0.621
+        return sonuc
+    }
+    
+    func soru2(a:Int,b:Int)->Int{
+        let sonuc = a * b
+        return sonuc
+    }
+    
+    func soru3(sayi:Int)->Int{
+        var sonuc = 1
+        if(sayi == 0 || sayi == 1){
+            return 1
+        }else{
+            return sayi * soru3(sayi: sayi - 1)
+        }
+    }
+    
+    func soru4(metin:String,harfGir:Character)-> Int{
+        var say = 0
+        
+        for harf in metin{
+            if(harf == harfGir){
+                say += 1
+            }
+        }
+       
+        return say
+    }
+    
+    func soru5(kenarSayisi:Int)->Int{
+        var toplam = ((kenarSayisi - 2) * 180) / kenarSayisi
+        
+        return toplam
+    }
+    
+    func soru6(gun:Int)->Int{
+        var sonuc : Int?
+        var gunlukUcret = 40 * 8
+  
+        if (gun == 0) {return 0}
+        
+        if((gun * 8) <= 150){
+            sonuc = gunlukUcret * gun
+        }else{
+            var saatToplam = (gun * 8)
+            var saatFark = saatToplam - 150 // 150 saat üstündeki saat farkını bulucaz
+            var mesaiUcret = saatFark * 80
+            
+            sonuc = (40 * 150) + mesaiUcret //150 saat olduğu için 40 * 150 direk hesaplandı üstüne mesai eklendi
+        }
+                
+        return sonuc ?? 0
+    }
+    
+    func soru7(saat:Int) -> Int{
+        var sonuc : Int?
+        var saatlikUcret = 50
+        
+        if (saat < 0) {return 0}
+        
+        if(saat == 1){
+            sonuc = 50
+        }else if(saat > 1){
+            var saatFark = saat - 1 // zaman aşımını bulmak için
+            sonuc = (saatFark * 10) + 50
+            
+        }
+        
+        return sonuc ?? 0
+    }
+}
+
+let sonuc = Odev2()
+
+
+print("Soru 1 : \(sonuc.soru1(km: 49.5))")
+print("Soru 2 : \(sonuc.soru2(a: 8, b: 12))")
+print("Soru 3 : \(sonuc.soru3(sayi: 5))")
+print("Soru 4 : \(sonuc.soru4(metin: "Merhaba benim adım Fatih 22 yaşındayım şuanda evdeyim", harfGir: "a"))")
+print("Soru 5 : \(sonuc.soru5(kenarSayisi: 5))")
+print("Soru 6 : \(sonuc.soru6(gun: 19)) ₺")
+print("Soru 7 : \(sonuc.soru7(saat: 4)) ₺")
